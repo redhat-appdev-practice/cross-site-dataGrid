@@ -1,0 +1,15 @@
+apiVersion: infinispan.org/v1
+kind: Infinispan
+metadata:
+  name: example-infinispan
+  namespace: data-grid
+spec:
+  replicas: 1
+  security:
+    endpointEncryption:
+      certSecretName: example-infinispan-cert-secret
+      certServiceName: service.beta.openshift.io
+      type: Service
+    endpointSecretName: example-infinispan-generated-secret
+  service:
+    type: DataGrid

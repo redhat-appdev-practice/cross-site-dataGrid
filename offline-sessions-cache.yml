@@ -1,0 +1,11 @@
+apiVersion: infinispan.org/v2alpha1
+kind: Cache
+metadata:
+  name: example-cache
+  namespace: data-grid
+spec:
+  adminAuth:
+    secretName: rhdg-client-auth
+  clusterName: example-infinispan
+  name: offline-sessions
+  template: <infinispan><cache-container><distributed-cache name="offline-sessions" mode="SYNC" statistics="true" remote-timeout="17500"><persistence><file-store/></persistence><state-transfer enabled="true" timeout="60000"/><transaction mode="NONE"/><locking striping="false" concurrency-level="1000" acquire-timeout="15000"/></distributed-cache></cache-container></infinispan>
