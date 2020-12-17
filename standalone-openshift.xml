@@ -247,7 +247,6 @@
                           <property name="infinispan.client.hotrod.sasl_mechanism">${hotrod.sasl_mechanism}</property>
                           <property name="infinispan.client.hotrod.trust_store_path">${hotrod.trust_store_path}</property>
                           <property name="infinispan.client.hotrod.sasl_properties.javax.security.sasl.qop">auth</property>
-                          <property name="infinispan.client.hotrod.sni_host_name">example-infinispan</property>
                         </remote-store>
                       </distributed-cache>
                 <distributed-cache name="clientSessions" owners="1"/>
