@@ -24,8 +24,6 @@ Set an environment variable with the OpenShift api for site 1
 e.g. 
 `export SITE1_API=https://api.cluster-4842.yyyyyy.xxxxxx.com:6443`
 
-Repeat these steps for site2
-
 Login to site2 using the oc tool
 
 Set an environment variable with the login token
@@ -58,6 +56,9 @@ Get token from site1 sa
 
 `export SITE1_TOKEN=$(oc sa get-token site1)`
 
+Create secret for site1 token
+
+`oc create secret generic site1-token --from-literal=token=$SITE1_TOKEN`
 ## SITE 2
 
 Login to site2
@@ -79,6 +80,10 @@ Get token from site1 sa
 Create secret for site1 token
 
 `oc create secret generic site1-token --from-literal=token=$SITE1_TOKEN`
+
+Create secret for site2 token
+
+`oc create secret generic site2-token --from-literal=token=$SITE2_TOKEN`
 
 ## SITE 1
 
