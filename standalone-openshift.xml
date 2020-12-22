@@ -233,25 +233,25 @@
                 <local-cache name="users">
                     <object-memory size="10000"/>
                 </local-cache>
-                <distributed-cache name="sessions" owners="1"/>
+                <distributed-cache name="sessions" owners="1" statistics-enabled="false"/>
                 <distributed-cache name="authenticationSessions" owners="1"/>
-                <distributed-cache name="offlineSessions" owners="1" statistics-enabled="false">
-                        <remote-store cache="offline-sessions" remote-servers="remote-rhdg-server1" passivation="false" fetch-state="false" purge="false" preload="false" shared="true">
+                <distributed-cache name="offlineSessions" owners="1" statistics-enabled="false"/>
+                <distributed-cache name="clientSessions" owners="1"/>
+                <distributed-cache name="offlineClientSessions" owners="1"/>
+                <distributed-cache name="loginFailures" owners="1">
+                    <remote-store cache="login-failures" remote-servers="remote-rhdg-server1" passivation="false" fetch-state="false" purge="false" preload="false" shared="true">
                           <property name="rawValues">true</property>
                           <property name="infinispan.client.hotrod.use_ssl">true</property>
                           <property name="infinispan.client.hotrod.use_auth">true</property>
                           <property name="infinispan.client.hotrod.auth_username">${hotrod.auth_username}</property>
                           <property name="infinispan.client.hotrod.auth_password">${hotrod.auth_password}</property>
-                          <property name="infinispan.client.hotrod.auth_realm">${hotrod.auth_realm}</property>
+                          <property name="infinispan.client.hotrod.auth_realm">default</property>
                           <property name="infinispan.client.hotrod.auth_server_name">${hotrod.auth_server_name}</property>
                           <property name="infinispan.client.hotrod.sasl_mechanism">${hotrod.sasl_mechanism}</property>
                           <property name="infinispan.client.hotrod.trust_store_path">${hotrod.trust_store_path}</property>
                           <property name="infinispan.client.hotrod.sasl_properties.javax.security.sasl.qop">auth</property>
                         </remote-store>
                       </distributed-cache>
-                <distributed-cache name="clientSessions" owners="1"/>
-                <distributed-cache name="offlineClientSessions" owners="1"/>
-                <distributed-cache name="loginFailures" owners="1"/>
                 <local-cache name="authorization">
                     <object-memory size="10000"/>
                 </local-cache>
@@ -629,7 +629,7 @@
                 <default-provider>default</default-provider>
                 <provider name="default" enabled="true">
                     <properties>
-                        <property name="remoteStoreSecurityEnabled" value="true"/>
+                        <property name="remoteStoreSecurityEnabled" value="false"/>
                         <property name="cacheContainer" value="java:jboss/infinispan/container/keycloak"/>
                     </properties>
                 </provider>

@@ -1,10 +1,12 @@
-# Data grid
+# DataGrid
 
 Create a data-grid namespace
 
 `oc new-project data-grid`
 
-Deploy the data grid operator into the data-grid namespace from the Operator hub
+Deploy the data grid operator
+
+`oc apply -f data-grid-operator.yml`
 
 Create an instance of data grid 
 
@@ -48,3 +50,7 @@ Add these to the JAVA_OPTS_APPEND env variable
 ```
 
 Update the image in the dc with the image we pushed in the previous step.
+
+# Cross site data replication
+
+To configure DataGrid for cross site replication, follow the steps [here](cross-site.md)

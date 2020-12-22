@@ -1,0 +1,20 @@
+apiVersion: infinispan.org/v1
+kind: Infinispan
+metadata:
+  name: example-infinispan
+spec:
+  replicas: 2
+  service:
+    type: DataGrid
+    sites:
+      local:
+        name: site2
+        expose:
+          type: LoadBalancer
+      locations:
+        - name: site2
+          url: openshift://api.secondary-4842.sandbox1596.opentlc.com:6443
+          secretName: site2-token
+        - name: site1
+          url: openshift://api.cluster-4842.sandbox1596.opentlc.com:6443
+          secretName: site1-token

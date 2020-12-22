@@ -1,0 +1,32 @@
+apiVersion: infinispan.org/v2alpha1
+kind: Cache
+metadata:
+  name: example-cache
+  namespace: data-grid
+spec:
+  adminAuth:
+    secretName: rhdg-client-auth
+  clusterName: example-infinispan
+  name: offline-sessions
+  template: <infinispan><cache-container><distributed-cache name="offline-sessions" mode="SYNC" statistics="true" remote-timeout="17500">      <backups>
+        <backup site="site1" strategy="SYNC">
+          <take-offline min-wait="120000"/>
+        </backup>
+      </backups><persistence><file-store/></persistence><state-transfer enabled="true" timeout="60000"/><transaction mode="NONE"/><locking striping="false" concurrency-level="1000" acquire-timeout="15000"/></distributed-cache></cache-container></infinispan>
+
+--- 
+apiVersion: infinispan.org/v2alpha1
+kind: Cache
+metadata:
+  name: login-failures
+  namespace: data-grid
+spec:
+  adminAuth:
+    secretName: rhdg-client-auth
+  clusterName: example-infinispan
+  name: login-failures
+  template: <infinispan><cache-container><distributed-cache name="login-failures" mode="SYNC" statistics="true" remote-timeout="17500">      <backups>
+        <backup site="site1" strategy="SYNC">
+          <take-offline min-wait="120000"/>
+        </backup>
+      </backups><persistence><file-store/></persistence><state-transfer enabled="true" timeout="60000"/><transaction mode="NONE"/><locking striping="false" concurrency-level="1000" acquire-timeout="15000"/></distributed-cache></cache-container></infinispan>
