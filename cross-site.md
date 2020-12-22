@@ -1,4 +1,6 @@
 
+# Cross site DataGrid replication using the DataGrid operator
+
 Instructions to deploy cross-site DataGrid replication, based on:
 
 https://access.redhat.com/documentation/en-us/red_hat_data_grid/8.0/html-single/running_data_grid_on_openshift/index#backup_sites
